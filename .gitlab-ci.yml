@@ -1,0 +1,35 @@
+image: python:3.9.7
+  
+variables:
+  GIT_STRATEGY: clone
+  REMOTE: "True"
+  ENV: "Staging"
+
+services:
+  - name: selenium/standalone-chrome:latest
+    alias: chrome
+  - name: selenium/standalone-firefox:latest
+    alias: firefox
+  - name: selenium/standalone-opera:latest
+    alias: opera
+  
+stages:
+  - cross-browser-regression
+
+cross-browser-regression-run:
+  stage: cross-browser-regression
+  
+  script:
+    
+    - rm -rf ./tmp/*; true
+    - pip install poetry
+    - poetry install
+    - poetry run pytest -v --html=Reports/Edit_cross_browser_chrome.html testCases/ --browser chrome
+    - poetry run pytest -v --html=Reports/Edit_cross_browser_firefox.html testCases/ --browser firefox
+    - poetry run pytest -v --html=Reports/Edit_cross_browser_opera.html testCases/ --browser opera
+  timeout: 10 hours
+
+  except:
+    - pushes
+    - merge_requests
+  
