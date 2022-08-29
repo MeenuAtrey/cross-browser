@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "cross-browser-edit"
+version = "0.1.0"
+description = ""
+authors = ["Meenu <meenu.atrey@itoworld.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+slackclient = "^2.9.4"
+pytest-html = "^3.1.1"
+msedge-selenium-tools = "^3.141.4"
+requests = "^2.28.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
