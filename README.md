@@ -1,1 +1,1 @@
-# cross-browser
+# cross-browser test framework
